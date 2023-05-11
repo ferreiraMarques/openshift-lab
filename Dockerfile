@@ -1,9 +1,9 @@
-FROM maven:3.8-openjdk-17 as build
+FROM maven:3.8-openjdk-11 as build
 WORKDIR /app
 COPY . .
 RUN mvn install
 
-FROM openjdk:17-jre-alpine
+FROM ubi8-openjdk-11
 WORKDIR /app
 COPY --from=build /app/target/demo-0.0.1-*.jar /app/app.jar
 EXPOSE 8080 
